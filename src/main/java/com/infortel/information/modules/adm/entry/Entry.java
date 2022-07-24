@@ -5,12 +5,10 @@
  */
 package com.infortel.information.modules.adm.entry;
 
-import com.infortel.information.lib.Forwarding_Data;
-import com.infortel.information.modules.adm.entry.Adm;
+import com.infortel.information.lib.Application;
 import com.infortel.information.lib.GeneralParams;
 import com.infortel.information.lib.Constants;
 import com.infortel.information.lib.Session;
-import com.infortel.information.lib.Users;
 import com.infortel.slibrary.SGeneral;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -23,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author leon
  */
-//@WebServlet(name = "Entry", urlPatterns = {"/adm", "/adm/"})
-@WebServlet(name = "Entry", urlPatterns = {"/adm"})
+@WebServlet(name = "Entry", urlPatterns = {"/adm", "/adm/"})
+//@WebServlet(name = "Entry", urlPatterns = {"/adm"})
 public class Entry extends HttpServlet {
 
     /**
@@ -46,17 +44,18 @@ public class Entry extends HttpServlet {
             p.uri=p.request.getRequestURI();
             if (Constants.FLAGS_ON) System.out.println("******************** Entry uri="+p.uri);
             //Initialize the first time
-            if (Users.self==null) Users.self=new Users(p);
-            if (Forwarding_Data.self==null) Forwarding_Data.self=new Forwarding_Data(p);
 
             String loginError=Session.verifyLogin(p);
             if (loginError==null) {
                 new Adm(p);
             } else Session.returnLoginPage(p,loginError);
+            
+            
         } catch (Throwable e) {
             String error=SGeneral.exceptionToString(e);
             p.session.returnError(p,error);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -97,5 +96,10 @@ public class Entry extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    @Override
+    public void init() throws ServletException {
+        super.init(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
 
 }

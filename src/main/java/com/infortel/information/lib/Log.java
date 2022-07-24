@@ -1,10 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.infortel.information.lib;
 
-import com.infortel.slibrary.*;
+import com.infortel.slibrary.ListString;
+import com.infortel.slibrary.SDate;
+import com.infortel.slibrary.SFile;
+
 /**
  *
  * @author leon
@@ -13,7 +16,12 @@ public class Log {
 //******************************************************************************
     private static final int MAX_SIZE=100000;
 //******************************************************************************
-    public static void addLog(String xmlLine) {
+    public static void add(String xmlLine) {
+        SDate date=new SDate().setNow();
+        addLog1(date.getString("yyyy-MM-dd HH:mm:ss ")+xmlLine);
+    }
+//******************************************************************************
+    public static void addLog1(String xmlLine) {
         /*
         ListString list=new ListString(false);
         
@@ -50,4 +58,5 @@ public class Log {
         return list;
     }
 //******************************************************************************
+    
 }

@@ -3,8 +3,8 @@
  * and open the template in the editor.
  */
 package com.infortel.information.modules.adm.commands;
+import com.infortel.information.lib.Filing;
 import com.infortel.information.lib.GeneralParams;
-import com.infortel.information.lib.Forwarding_Data;
 import java.io.PrintWriter;
 import com.infortel.slibrary.SString;
 
@@ -14,6 +14,8 @@ import com.infortel.slibrary.SString;
  * @author leon
  */
 public class Cmd_adm_ChangePassword {
+//******************************************************************************
+    public static final String TITLE="Change Password";
 //******************************************************************************
     public Cmd_adm_ChangePassword(GeneralParams p, PrintWriter out) {
         Cmd_adm_General.showTitle(out,"Change Password Result");
@@ -33,7 +35,7 @@ public class Cmd_adm_ChangePassword {
               
         if (ok) {
             p.session.user.password=newPassword1;
-            Forwarding_Data.self.saveData(p);
+            Filing.get().users.saveData(p);
             Cmd_adm_General.jobMessage(out,"Password Changed");
         }
         

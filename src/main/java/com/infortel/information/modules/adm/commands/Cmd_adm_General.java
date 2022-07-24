@@ -13,6 +13,9 @@ import java.io.PrintWriter;
  * @author leon
  */
 public class Cmd_adm_General {
+//******************************************************************************
+    public static final String TITLE="General Administration";
+//******************************************************************************
 //****************************************************************************** 
     public static void showTitle(PrintWriter out, String title) {
         out.println("<html>");

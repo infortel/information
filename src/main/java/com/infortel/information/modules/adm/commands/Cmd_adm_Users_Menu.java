@@ -4,7 +4,7 @@
  */
 package com.infortel.information.modules.adm.commands;
 
-import com.infortel.information.modules.adm.entry.Adm;
+import com.infortel.information.lib.Filing;
 import com.infortel.information.lib.GeneralParams;
 import com.infortel.information.lib.Users;
 import java.io.PrintWriter;
@@ -16,6 +16,9 @@ import com.infortel.slibrary.StringSet;
  * @author leon
  */
 public class Cmd_adm_Users_Menu {
+//******************************************************************************
+    public static final String TITLE="Users Menu";
+//******************************************************************************
 //******************************************************************************
     //public final static String PARAM_PREFIX="prefix";
     //public final static String PARAM_URL="url";
@@ -60,7 +63,7 @@ public class Cmd_adm_Users_Menu {
 //******************************************************************************
     private void listEditRecord() {
         Users.UserRec rec=new Users.UserRec();
-        StringSet set=Users.self.userRecords.get(edit_this_prefix);
+        StringSet set=Filing.get().users.userRecords.get(edit_this_prefix);
         if (set!=null) rec=(Users.UserRec)set.object;
 
         out.println("<table border='1' bgcolor='#FFFFCC'>");
@@ -75,8 +78,8 @@ public class Cmd_adm_Users_Menu {
         out.println("<input type='hidden' name='"+PARAM_PREVIOUS_PREFIX+"' value='"+SString.nullToText(edit_this_prefix)+"'/>");
         out.println("<tr>");
         out.println("<td>");
-        out.println("<input type='submit' value='" + Adm.COMMAND_USER_UPDATE + "' name='command'/>");
-        out.println("<input type='submit' value='" + Adm.COMMAND_USER_DELETE + "' name='command'/>");
+        out.println("<input type='submit' value='" + Cmd_adm_Users_Update.TITLE + "' name='command'/>");
+        out.println("<input type='submit' value='" + Cmd_adm_Users_Delete.TITLE + "' name='command'/>");
         out.println("</td>");
         out.println("<td><input type='text' name='"+Users.TAG_USERS_ITEM_LOGIN+"' value='"+SString.nullToText(rec.login)+"'/></td>");
         out.println("<td><input type='text' name='"+Users.TAG_USERS_ITEM_NAME+"' value='"+SString.nullToText(rec.name)+"'/></td>");

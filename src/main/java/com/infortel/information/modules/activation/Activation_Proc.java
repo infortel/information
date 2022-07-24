@@ -20,6 +20,8 @@ import com.siscon.common.client.Field;
 import com.siscon.common.client.Table;
 import com.infortel.information.lib.Constants;
 import com.infortel.information.lib.Database;
+import com.infortel.information.lib.Filing;
+import com.infortel.information.lib.Setup;
 /**
  *
  * @author guillermo
@@ -59,9 +61,15 @@ public class Activation_Proc {
     SDate fecha_extension_licencia;
 //******************************************************************************
     public boolean reportOk(String text) {
-        if (text==null) return true;
-        else {
+        if (text==null) {
+            return true;
+        } else {
+            text=text.replaceAll("\n", "<br>");
             out.println("<br>Error: "+text);
+            out.println("<br>Server: "+Filing.get().setup.get(Setup.TAG.DB_SERVER));
+            out.println("<br>Login: "+Filing.get().setup.get(Setup.TAG.DB_LOGIN));
+            
+            Database.connection=null;
             return false;
         }
     }
@@ -77,10 +85,10 @@ public class Activation_Proc {
             Database.checkCreateConnection();
             agent_code=request.getParameter(HREF_CODIGO);
             int computerId=Get_Key.getComputerId();
-            out.println("<br>"+Constants.getVersionSummary()+"-"+computerId);
+            out.println("<br>"+Constants.getVersionSummary());
             out.println("<br>");
 
-            if ((computerId==Constants.COMPUTER_PROGRAM_ID) || (Constants.DEBUGGING)) {
+            if ((computerId==Constants.getComputerProgramID()) || (Constants.DEBUGGING)) {
 
                 qAgent=new SDBQuery(Database.connection,null);
                 qAgent.sqlText.append("Select * from "+Database.tab(Table.agentes)
@@ -90,11 +98,11 @@ public class Activation_Proc {
                     if (qAgent.next()) {
                         processLogin();
                     } else {
-                        out.println("<br>CÃ³digo no pudo ser encontrado");
+                        out.println("<br>Código no pudo ser encontrado");
                     }
                 }
             } else {
-                out.println("<br>Error en cÃ³digo de computadora");
+                out.println("<br>Error en código de computadora");
             }
         } catch (Throwable e) {
             out.println("<br>"+e.getMessage());

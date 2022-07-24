@@ -14,6 +14,9 @@ import java.io.PrintWriter;
  */
 public class Cmd_adm_MainMenu {
 //******************************************************************************
+    public static final String TITLE="Main Menu";
+//******************************************************************************
+//******************************************************************************
     PrintWriter out=null;
 //******************************************************************************
 //******************************************************************************
@@ -33,14 +36,16 @@ public class Cmd_adm_MainMenu {
 
         out.println("<table border='1' bgcolor='#FFFFCC'>");
         out.print("<tr bgcolor='CCCCCC'>");
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_LOGOUT+"'>Logout</a>"+NEWLINE);
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_DOMAIN_LIST+"'>List Domains</a>"+NEWLINE);
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_DOMAIN_MENU+"'>Setup Domain</a>"+NEWLINE);
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_USER_LIST+"'>List Users</a>"+NEWLINE);
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_USER_MENU+"'>Setup User</a>"+NEWLINE);
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_CHANGE_PASSWORD_ADM_MENU+"'>Change administration password</a>"+NEWLINE);
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_LOG_LIST+"'>Log Report</a>"+NEWLINE);
-        out.println(TAB+"<a href='?command="+Adm.COMMAND_GET_PUBLIC_IP+"'>Get Public IP</a>"+NEWLINE);
+        out.println(TAB+"<a href='?command="+Cmd_adm_Logout.TITLE+"'>"+Cmd_adm_Logout.TITLE+"</a>"+NEWLINE);
+        out.println(TAB+"<a href='?command="+Cmd_adm_Users_List.TITLE+"'>"+Cmd_adm_Users_List.TITLE+"</a>"+NEWLINE);
+        out.println(TAB+"<a href='?command="+Cmd_adm_Users_Menu.TITLE+"'>"+Cmd_adm_Users_Menu.TITLE+"</a>"+NEWLINE);
+        //out.println(TAB+"<a href='?command="+Cmd_adm_GetInfortelPassword.TITLE+"'>"+Cmd_adm_GetInfortelPassword.TITLE+"</a>"+NEWLINE);
+        out.println(TAB+"<a href='?command="+Cmd_adm_Setup_Edit.TITLE+"'>"+Cmd_adm_Setup_Edit.TITLE+"</a>"+NEWLINE);
+        out.println(TAB+"."+NEWLINE);
+        out.println(TAB+"<a href='?command="+Cmd_adm_Log_User_Passwords.TITLE+"'>"+Cmd_adm_Log_User_Passwords.TITLE+"</a>"+NEWLINE);
+        out.println(TAB+"<a href='?command="+Cmd_adm_Log_General.TITLE+"'>"+Cmd_adm_Log_General.TITLE+"</a>"+NEWLINE);
+        out.println(TAB+"."+NEWLINE);
+        out.println(TAB+"<a href='?command="+Cmd_adm_GetPublicIp.TITLE+"'>"+Cmd_adm_GetPublicIp.TITLE+"</a>"+NEWLINE);
         out.println("</table>");
         out.println("<br>");
         

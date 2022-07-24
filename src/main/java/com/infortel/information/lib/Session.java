@@ -14,6 +14,19 @@ import java.io.PrintWriter;
 public class Session {
     
 //******************************************************************************
+    private SString errors=new SString();
+    //**************************************************************************
+    public void addError(String error) {
+        errors.append(error+"\n");
+    }
+    //**************************************************************************
+    public String getErrors() {
+        if (errors.length()==0) return null;
+        return errors.str();
+    }
+    //**************************************************************************
+//******************************************************************************
+//******************************************************************************
     public static final String K_SESSION_ATTRIBUTE_NAME="session_object";
     public Users.UserRec user;
 //******************************************************************************
@@ -41,8 +54,7 @@ public class Session {
                 password1="catatumba";
             }
             
-            
-            p.session.user=Users.self.getUser(login1);
+            p.session.user=Filing.get().users.getUser(login1);
             if (p.session.user!=null) {
                 if (SString.equal(password1, p.session.user.password)) {
                     if (p.session.user.hasAccessTo(Users.Permit.RED_ADM)) {
@@ -64,7 +76,11 @@ public class Session {
                     && (SString.equal(password1,Constants.SYSTEM_PASSWORD))) {
                 error=null;
             }
-error=null;    //Disable login.         
+    
+            if (Constants.DEBUGGING) {
+                //Disable login.
+                error=null;
+            }             
            
             
         } 

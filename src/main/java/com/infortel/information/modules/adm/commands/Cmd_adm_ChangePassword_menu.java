@@ -13,6 +13,9 @@ import java.io.PrintWriter;
  * @author leon
  */
 public class Cmd_adm_ChangePassword_menu {
+//******************************************************************************
+    public static final String TITLE="Menu Change Password";
+//******************************************************************************
     public final static String PARAM_NEW_PASSWORD1="new_password1";
     public final static String PARAM_NEW_PASSWORD2="new_password2";
     
@@ -25,7 +28,7 @@ public class Cmd_adm_ChangePassword_menu {
         out.print("<tr bgcolor='CCCCCC'>");
         out.println("<td>New Password:<br><input type='password' value='"+""+"' name='"+PARAM_NEW_PASSWORD1+"'/></td>");
         out.println("<td>New Password Confirmation:<br><input type='password' value='"+""+"' name='"+PARAM_NEW_PASSWORD2+"'/></td>");
-        out.println("<td><input type='submit' value='"+Adm.COMMAND_CHANGE_PASSWORD_ADM+"' name='command'/></td>");
+        out.println("<td><input type='submit' value='"+Cmd_adm_ChangePassword.TITLE+"' name='command'/></td>");
         out.println("</tr>");
         out.println("</table>");
         out.println("<br>");

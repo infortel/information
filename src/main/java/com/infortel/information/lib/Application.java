@@ -4,6 +4,8 @@
  */
 package com.infortel.information.lib;
 
+import com.infortel.slibrary.SString;
+
 /**
  *
  * @author leon
@@ -15,24 +17,30 @@ public class Application {
 //******************************************************************************
     public static Application self=new Application();
 //******************************************************************************
-    public static void initialize() {
+    public void Application() {
+        initialize();
+    }
+//****************************************************************************** 
+    public void initialize() {
         if (!initialized) {
             operating_system=System.getProperty("os.name");
             if (operating_system.equalsIgnoreCase("Linux")) {
-                String userHome = "/opt";
                 isInLinux=true;
             } else {
                 isInLinux=false;
             }  
             initialized=true;
         }
+
     }
 //****************************************************************************** 
-    public static boolean isLinux() {
+    public boolean isLinux() {
+        initialize();
         return isInLinux;
     }
 //****************************************************************************** 
-    public static boolean isWindows() {
+    public boolean isWindows() {
+        initialize();
         return (!isInLinux);
     }
 //******************************************************************************    

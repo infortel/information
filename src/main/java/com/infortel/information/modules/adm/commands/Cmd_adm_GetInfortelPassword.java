@@ -4,9 +4,11 @@
  */
 package com.infortel.information.modules.adm.commands;
 
+import com.infortel.information.modules.adm.commands.getInfortelPassword.SystemDateProcess;
 import com.infortel.information.lib.GeneralParams;
 import com.infortel.information.lib.Constants;
-import com.infortel.information.lib.Log;
+import com.infortel.information.lib.Filing;
+import com.infortel.information.lib.Log_Password;
 import com.infortel.information.lib.Users;
 import java.io.PrintWriter;
 import com.infortel.slibrary.*;
@@ -17,6 +19,8 @@ import com.infortel.slibrary.*;
  */
 public class Cmd_adm_GetInfortelPassword {
 //******************************************************************************
+    public final static String TITLE="get_infortel_pass_siscon";
+//******************************************************************************
     Users.UserRec user;
     GeneralParams p;
 //******************************************************************************
@@ -26,7 +30,7 @@ public class Cmd_adm_GetInfortelPassword {
         String code=p.request.getParameter(Constants.Adm_param_get_siscon_password.CODE);
         
 
-        user=Users.self.getUser(username);
+        user=Filing.get().users.getUser(username);
         
         String result="";
         String result1="";
@@ -70,7 +74,7 @@ public class Cmd_adm_GetInfortelPassword {
                 +SXml.set(Constants.Adm_param_get_siscon_password.DATE, date)
                 );
         
-        Log.addLog(xml.str());
+        Log_Password.addLog(xml.str());
     }
 //******************************************************************************
     private static final int BASE_ENCRYPT_PASSWORD=2384732;
@@ -99,7 +103,7 @@ public class Cmd_adm_GetInfortelPassword {
 
     private final static String LOGIN_PASSWORD_ENCRYPT_PREFIX="a";
     public static String loginPassword_encrypt(String text) {
-        String result=Cmd_adm_SystemDateProcess.enTime(LOGIN_PASSWORD_KEY_CODE,text);
+        String result=SystemDateProcess.enTime(LOGIN_PASSWORD_KEY_CODE,text);
         result=LOGIN_PASSWORD_ENCRYPT_PREFIX+":"+result;
         return result;
     } 

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GeneralParams {
 //******************************************************************************
+    public static GeneralParams active;
     public HttpServletRequest request;
     public HttpServletResponse response;
     //public Forwarding_Data data;
@@ -21,5 +22,8 @@ public class GeneralParams {
     public Session session;
     public String uri;
 //******************************************************************************
-    
+    public GeneralParams() {
+        active=this;
+    }
+//******************************************************************************
 }

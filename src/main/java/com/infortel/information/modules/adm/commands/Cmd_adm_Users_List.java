@@ -4,7 +4,7 @@
  */
 package com.infortel.information.modules.adm.commands;
 
-import com.infortel.information.modules.adm.entry.Adm;
+import com.infortel.information.lib.Filing;
 import com.infortel.information.lib.GeneralParams;
 import com.infortel.information.lib.Users;
 import java.io.PrintWriter;
@@ -15,6 +15,9 @@ import com.infortel.slibrary.SString;
  * @author leon
  */
 public class Cmd_adm_Users_List {
+//******************************************************************************
+    public static final String TITLE="List Users";
+//******************************************************************************
 //******************************************************************************
     PrintWriter out;
     GeneralParams p;
@@ -45,8 +48,8 @@ public class Cmd_adm_Users_List {
 
         if (rec!=null) listItem(false,rec);
         else {
-            for (int i=0; i<Users.self.userRecords.size(); i++) {
-                rec=(Users.UserRec)Users.self.userRecords.get(i).object;
+            for (int i=0; i<Filing.get().users.userRecords.size(); i++) {
+                rec=(Users.UserRec)Filing.get().users.userRecords.get(i).object;
                 listItem(true,rec);
             }
         }
@@ -70,7 +73,7 @@ public class Cmd_adm_Users_List {
         fieldData=SString.nullToText(fieldData);
         String result=fieldData;
         if (SString.equal(name, "login")) {
-            result="<a href='?command="+Adm.COMMAND_USER_MENU
+            result="<a href='?command="+Cmd_adm_Users_Menu.TITLE
                 +"&"+Cmd_adm_Users_Menu.PARAM_EDIT_THIS_PREFIX+"="+fieldData
                 +"'>"+fieldData+"</a>"
                     ;
