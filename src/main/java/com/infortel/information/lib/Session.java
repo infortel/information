@@ -40,6 +40,7 @@ public class Session {
             }
     }
 //******************************************************************************
+    public static int login_failure_count=0;
     public static String verifyLogin (GeneralParams p) {
         getSession(p);
         String error=null;
@@ -84,6 +85,14 @@ public class Session {
            
             
         } 
+        
+        if (login_failure_count>5) error="Login disabled due to repeated failures";
+        
+        if (error==null) {
+            login_failure_count=0;
+        } else {
+            login_failure_count++;
+        }
         
         return error;
     }

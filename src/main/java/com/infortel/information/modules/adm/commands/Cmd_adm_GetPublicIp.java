@@ -50,7 +50,7 @@ public class Cmd_adm_GetPublicIp {
             
             report_row("---FROM SCHEDULER---","----","");
             report_row("Last NS1 IP",Scheduler.self.last_ns1_ip,formatDate(Scheduler.self.last_ns1_ip_date));
-            report_row("Last Public NS1 IP",Scheduler.self.last_public_ip,formatDate(Scheduler.self.last_public_ip_date));
+            report_row("Last Public IP",Scheduler.self.last_public_ip,formatDate(Scheduler.self.last_public_ip_date));
             report_row("Last Time IP Updated into NS1","",formatDate(Scheduler.self.last_updated_ip_date));
             
             out.println("</table>");

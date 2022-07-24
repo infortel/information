@@ -5,6 +5,7 @@
 package com.infortel.information.lib;
 
 import com.infortel.information.support.ns1.Ns1;
+import com.infortel.slibrary.SConvert;
 import com.infortel.slibrary.SDate;
 import com.infortel.slibrary.SString;
 
@@ -15,7 +16,7 @@ import com.infortel.slibrary.SString;
 public class Scheduler extends Thread {
 //******************************************************************************
     public static Scheduler self;
-    private static final int PERIOD=4000;
+    private static final int PERIOD=10;
     public long cycle_count=0;
     public String last_public_ip=null;
     public SDate last_public_ip_date=null;
@@ -39,9 +40,15 @@ public class Scheduler extends Thread {
 //******************************************************************************
     public void run() {
         while (true) {
-            try { Thread.sleep(PERIOD); } catch (Exception e) {};
+            int period=SConvert.strToInt(Filing.get().setup.get(Setup.TAG.SCHEDULER_PERIOD_S));
+            if (period<=0) period=PERIOD;
+            try { Thread.sleep(period*1000); } catch (Exception e) {};
             cycle_count++;
-            verify_public_ip();
+            if (SString.isTrue(Filing.get().setup.get(Setup.TAG.NS1_ACTIVE))) {
+                verify_public_ip();
+            } else {
+                last_ns1_ip_time=0;
+            }
         }
     }
 //******************************************************************************

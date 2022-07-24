@@ -19,13 +19,16 @@ public class Setup {
         public final static String DB_SERVER="db_server";
         public final static String DB_LOGIN="db_login";
         public final static String DB_PASSWORD="db_password";
+        public final static String SCHEDULER_PERIOD_S="scheduler_period_s";
+        public final static String NS1_ACTIVE="ns1_active";
         public final static String NS1_API_KEY="ns1_api_key";
         public final static String NS1_ZONE="ns1_zone";
         public final static String NS1_DOMAIN="ns1_domain";
         public final static String ND1_RECORD="ns1_record";
     }
     public static String[] TAGS={TAG.DB_SERVER,TAG.DB_LOGIN,TAG.DB_PASSWORD
-            ,TAG.NS1_API_KEY,TAG.NS1_ZONE,TAG.NS1_DOMAIN,TAG.ND1_RECORD
+            ,TAG.SCHEDULER_PERIOD_S
+            ,TAG.NS1_ACTIVE,TAG.NS1_API_KEY,TAG.NS1_ZONE,TAG.NS1_DOMAIN,TAG.ND1_RECORD
     };
 //******************************************************************************
 //******************************************************************************

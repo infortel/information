@@ -45,6 +45,8 @@ public class Cmd_adm_Setup_Update {
         out.println("<br>");
 
         out.println("Setup updated");
+        Cmd_adm_General.gotoMainMenuLink(out);
+        Cmd_adm_General.closeBody(out);    
     }
 //******************************************************************************
 //******************************************************************************

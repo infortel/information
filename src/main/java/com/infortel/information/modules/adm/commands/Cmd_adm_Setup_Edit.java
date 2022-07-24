@@ -45,7 +45,11 @@ public class Cmd_adm_Setup_Edit {
         out.println("<br>");
 
         out.println("</form>");
-    }
+        
+        out.println("<br>");
+        Cmd_adm_General.gotoMainMenuLink(out);
+        
+        Cmd_adm_General.closeBody(out);    }
 //******************************************************************************
     private void listEditRecord() {
         //Users.UserRec rec=new Users.UserRec();
